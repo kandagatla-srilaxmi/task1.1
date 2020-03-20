@@ -1,10 +1,8 @@
 var connection=require("../db/connect");
-
-
 postMethod=async(data)=>{
     return new Promise((resolve,reject)=>{
         console.log(data);
-        connection.query(`insert into student values('${data.id}','${data.name}','${data.age}')`,(error,result)=>{
+        connection.query(`insert into student values('${data.id}','${data.name}','${data.age}','${data.num}')`,(error,result)=>{
             if(!error){
                 resolve(result);
             }
@@ -41,7 +39,8 @@ getById=async(id)=>{
 }
 updateMethod=async(id,name,data)=>{
     return new Promise((resolve,reject)=>{
-        connection.query(`update set name='${data}' where id='${id}'`,(error,result)=>{
+        connection.query(`update student set ${name}='${data}' where id='${id}'`,(error,result)=>{
+            
             if(!error){
                 resolve(result);
             }
